@@ -39,10 +39,4 @@ router.get("/goto/:url(*)", (req, res) => {
 
 });
 
-router.get("/new/:short" , (req , res) => {
-    let shortUrl = req.params.short;
-    console.log(shortUrl);
-   // url.findOne({"shortUrl" : })
-});
-
 module.exports = router;

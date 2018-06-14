@@ -9,9 +9,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(publicPath));
 let post = require("./../route/post.js");
+let redirect = require("./../route/new.js");
 require("./../config/DB.js");
 
 app.get("/goto/:url(*)", post);
+
+app.get("/new/:shorten" , redirect);
 
 
 app.listen(port, () => {
