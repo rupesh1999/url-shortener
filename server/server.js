@@ -16,7 +16,6 @@ app.get("/goto/:url(*)", post);
 
 app.get("/new/:shorten" , redirect);
 
-
 app.listen(port, () => {
     console.log(`server started on port ${port}`);
 });

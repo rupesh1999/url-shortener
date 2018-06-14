@@ -22,7 +22,7 @@ router.get("/goto/:url(*)", (req, res) => {
                         };
                         new url(obj).save().then((item) => {
                             console.log(item);
-                            res.json(item);
+                            res.json(obj);
                         }).catch(err => console.log(err));
                     }else {
                         res.send(doccument);
