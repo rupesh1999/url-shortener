@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>URL Shortener</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" id="bar" name="bar" />
+        <button id="button" type="submit">Post URL</button>
+    </form>
+
+    <script>
+        document.getElementById("button").addEventListener('click', (e) => {
+            e.preventDefault();
+            var url = document.getElementById("bar").value;
+            
+            console.log(window.location.href + "goto/");
+            var site = window.location.href + "goto/";
+            location.replace(site + url);
+        });
+    </script>
+</body>
+
+</html>
