@@ -2,26 +2,47 @@ const express = require("express");
 let router = express.Router();
 const mongoose = require("mongoose");
 const urlExists = require("url-exists");
+let length;
 
 let { url } = require("./../model/url.js");
 
 router.get("/goto/:url(*)", (req, res) => {
-    var url = req.params.url;
-    urlExists(url, function (err, exists) {
+    var URL = req.params.url;
+    urlExists(URL, function (err, exists) {
         if (exists) {
-            console.log(url);
-            res.send({
-                "URL": url,
-                "shortened Url": 1
+            console.log(URL);
+        
+            let count = url.find().count({} , (err , data) => {
+                url.findOne({"url" : URL})
+                .then(doccument => {
+                    if(doccument === null) {
+                        let obj = {
+                            "url": URL,
+                            "shortUrl": data + 1
+                        };
+                        new url(obj).save().then((item) => {
+                            console.log(item);
+                            res.json(item);
+                        }).catch(err => console.log(err));
+                    }else {
+                        res.send(doccument);
+                    }
+                }).catch(err => console.log(err));
             });
         } else {
-            console.log(url);
+            console.log(URL);
             res.send({
                 error: "Invalid Url Entered"
             });
         }
     });
 
+});
+
+router.get("/new/:short" , (req , res) => {
+    let shortUrl = req.params.short;
+    console.log(shortUrl);
+   // url.findOne({"shortUrl" : })
 });
 
 module.exports = router;
